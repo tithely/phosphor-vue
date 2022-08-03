@@ -1,8 +1,8 @@
-import Vue, { VNode } from "vue";
-import Dev from "./App.vue";
+import Vue, { VNode } from 'vue'
+import Dev from './App.vue'
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 new Vue({
-  render: (h): VNode => h(Dev),
-}).$mount("#app");
+    render: (h): VNode => h(Dev)
+}).$mount('#app')

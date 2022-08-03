@@ -4,48 +4,52 @@
 
 Phosphor is a flexible icon family for interfaces, diagrams, presentations — whatever, really. Explore all our icons at [phosphoricons.com](https://phosphoricons.com).
 
-For Vue 3 support, check out the [vue3](https://github.com/phosphor-icons/phosphor-vue/tree/vue3) branch.
-
-[![NPM](https://img.shields.io/npm/v/phosphor-vue.svg?style=flat-square)](https://www.npmjs.com/package/phosphor-vue) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](https://standardjs.com) [![Travis](https://img.shields.io/travis/com/rektdeckard/phosphor-vue.svg?style=flat-square)](https://travis-ci.com/github/rektdeckard/phosphor-vue)
-
-[![GitHub stars](https://img.shields.io/github/stars/phosphor-icons/phosphor-vue?style=flat-square&label=Star)](https://github.com/phosphor-icons/phosphor-vue)
-[![GitHub forks](https://img.shields.io/github/forks/phosphor-icons/phosphor-vue?style=flat-square&label=Fork)](https://github.com/phosphor-icons/phosphor-vue/fork)
-[![GitHub watchers](https://img.shields.io/github/watchers/phosphor-icons/phosphor-vue?style=flat-square&label=Watch)](https://github.com/phosphor-icons/phosphor-vue)
-[![Follow on GitHub](https://img.shields.io/github/followers/rektdeckard?style=flat-square&label=Follow)](https://github.com/rektdeckard)
+Forked from [https://github.com/phosphor-icons/phosphor-vue]().
 
 ## Installation
 
 ```bash
-yarn add phosphor-vue
+yarn add -D @tithely/phosphor-vue
 ```
 
 or
 
 ```bash
-npm install --save phosphor-vue
+npm i -D @tithely/phosphor-vue
 ```
 
 ## Usage
 
+- TypeScript (optional)
+
+    Create the following file in your `types` folder.
+
+    ```ts
+    // phosphor.d.ts
+
+    declare module '@tithely/phosphor-vue'
+    ```
+
 ```html
 <template>
-  <div>
-    <ph-horse />
-    <ph-heart :size="32" color="hotpink" weight="fill" />
-    <ph-cube />
-  </div>
+    <div>
+        <PhHorse />
+        <PhHeart :size="32" color="hotpink" weight="fill" />
+        <PhCube />
+    </div>
 </template>
 
 <script>
-  import { PhHorse, PhHeart, PhCube } from "phosphor-vue";
-  export default {
-    name: "App",
+import { PhHorse, PhHeart, PhCube } from '@tithely/phosphor-vue'
+
+export default {
+    name: `App`,
     components: {
-      PhHorse,
-      PhHeart,
-      PhCube
+          PhHorse,
+          PhHeart,
+          PhCube
     }
-  };
+};
 </script>
 ```
 
@@ -64,29 +68,30 @@ Phosphor takes advantage of Vue's `provide`/`inject` options to make applying a 
 
 ```html
 <template>
-  <div>
-    <ph-horse /> {/* I'm lime-green, 32px, and bold! */} 
-    <ph-heart /> {/* Me too! */} 
-    <ph-cube />  {/* Me three :) */}
-  </div>
+    <div>
+        <PhHorse /> {/* I'm lime-green, 32px, and bold! */}
+        <PhHeart /> {/* Me too! */}
+        <PhCube />  {/* Me three :) */}
+    </div>
 </template>
 
 <script>
-  import { PhHorse, PhHeart, PhCube } from "phosphor-vue";
-  export default {
-    name: "App",
+import { PhHorse, PhHeart, PhCube } from '@tithely/phosphor-vue'
+
+export default {
+    name: `App`,
     components: {
-      PhHorse,
-      PhHeart,
-      PhCube
+        PhHorse,
+        PhHeart,
+        PhCube
     },
     provide: {
-      color: "limegreen",
-      size: 32,
-      weight: "bold",
-      mirrored: false
+        color: `limegreen`,
+        size: 32,
+        weight: `bold`,
+        mirrored: false
     }
-  };
+}
 </script>
 ```
 
@@ -106,29 +111,29 @@ The following will cause the Cube icon to rotate and pulse:
 
 ```html
 <template>
-  <ph-cube color="darkorchid" weight="duotone">
-    <animate
-      attributeName="opacity"
-      values="0;1;0"
-      dur="4s"
-      repeatCount="indefinite"
-    />
-    <animateTransform
-      attributeName="transform"
-      attributeType="XML"
-      type="rotate"
-      dur="5s"
-      from="0 0 0"
-      to="360 0 0"
-      repeatCount="indefinite"
-    />
-  </ph-cube>
+    <PhCube
+        color="darkorchid"
+        weight="duotone">
+        <animate
+            attributeName="opacity"
+            values="0;1;0"
+            dur="4s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            dur="5s"
+            from="0 0 0"
+            to="360 0 0"
+            repeatCount="indefinite"/>
+    </PhCube>
 </template>
 ```
 
 **Note:** The coordinate space of slotted elements is relative to the contents of the icon `viewBox`, which is a 256x256 square. Only [valid SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Element#SVG_elements_by_category) will be rendered.
 
-## Our Related Projects
+## Related Projects
 
 - [phosphor-home](https://github.com/phosphor-icons/phosphor-home) ▲ Phosphor homepage and general info
 - [phosphor-react](https://github.com/phosphor-icons/phosphor-react) ▲ Phosphor icon component library for React

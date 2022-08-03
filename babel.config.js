@@ -1,5 +1,6 @@
-const devPresets = ['@vue/babel-preset-app'];
-const buildPresets = ['@babel/preset-env', '@babel/preset-typescript'];
 module.exports = {
-  presets: (process.env.NODE_ENV === 'development' ? devPresets : buildPresets),
-};
+    presets: [
+        [`@babel/preset-env`, { targets: `> 0.5%, last 2 major versions, Firefox ESR, not dead, iOS 13, Safari 13` }],
+        `@babel/preset-typescript`
+    ]
+}
