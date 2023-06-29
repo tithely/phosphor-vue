@@ -8,13 +8,90 @@
         :transform="displayMirrored"
         v-bind="$attrs"
         v-on="$listeners">
-        <slot />
-            <g v-if="displayWeight === 'bold'"><polygon points="136 32 232 128 136 224 136 176 80 176 80 80 136 80 136 32" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><line x1="40" y1="176" x2="40" y2="80" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></g>
-            <g v-else-if="displayWeight === 'duotone'"><polygon points="136 32 232 128 136 224 136 176 72 176 72 80 136 80 136 32" opacity="0.2"/><polygon points="136 32 232 128 136 224 136 176 72 176 72 80 136 80 136 32" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="40" y1="176" x2="40" y2="80" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></g>
+        <slot/>
+            <g v-if="displayWeight === 'bold'"><polygon
+points="136 32 232 128 136 224 136 176 80 176 80 80 136 80 136 32"
+fill="none"
+:stroke="displayColor"
+stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="24"/><line
+x1="40"
+y1="176"
+x2="40"
+y2="80"
+fill="none"
+:stroke="displayColor"
+stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="24"/></g>
+            <g v-else-if="displayWeight === 'duotone'"><polygon
+points="136 32 232 128 136 224 136 176 72 176 72 80 136 80 136 32"
+opacity="0.2"/><polygon
+points="136 32 232 128 136 224 136 176 72 176 72 80 136 80 136 32"
+fill="none"
+:stroke="displayColor"
+stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="16"/><line
+x1="40"
+y1="176"
+x2="40"
+y2="80"
+fill="none"
+:stroke="displayColor"
+stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="16"/></g>
             <g v-else-if="displayWeight === 'fill'"><path d="M132.9,231.4A8,8,0,0,1,128,224V184H72a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8h56V32a8,8,0,0,1,4.9-7.4,8.4,8.4,0,0,1,8.8,1.7l96,96a8.1,8.1,0,0,1,0,11.4l-96,96A8.4,8.4,0,0,1,132.9,231.4ZM48,176V80a8,8,0,0,0-16,0v96a8,8,0,0,0,16,0Z"/></g>
-            <g v-else-if="displayWeight === 'light'"><polygon points="136 32 232 128 136 224 136 176 72 176 72 80 136 80 136 32" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/><line x1="40" y1="176" x2="40" y2="80" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/></g>
-            <g v-else-if="displayWeight === 'thin'"><polygon points="136 32 232 128 136 224 136 176 72 176 72 80 136 80 136 32" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/><line x1="40" y1="176" x2="40" y2="80" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/></g>
-            <g v-else-if="displayWeight === 'regular'"><polygon points="136 32 232 128 136 224 136 176 72 176 72 80 136 80 136 32" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="40" y1="176" x2="40" y2="80" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></g>
+            <g v-else-if="displayWeight === 'light'"><polygon
+points="136 32 232 128 136 224 136 176 72 176 72 80 136 80 136 32"
+fill="none"
+:stroke="displayColor"
+stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="12"/><line
+x1="40"
+y1="176"
+x2="40"
+y2="80"
+fill="none"
+:stroke="displayColor"
+stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="12"/></g>
+            <g v-else-if="displayWeight === 'thin'"><polygon
+points="136 32 232 128 136 224 136 176 72 176 72 80 136 80 136 32"
+fill="none"
+:stroke="displayColor"
+stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="8"/><line
+x1="40"
+y1="176"
+x2="40"
+y2="80"
+fill="none"
+:stroke="displayColor"
+stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="8"/></g>
+            <g v-else-if="displayWeight === 'regular'"><polygon
+points="136 32 232 128 136 224 136 176 72 176 72 80 136 80 136 32"
+fill="none"
+:stroke="displayColor"
+stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="16"/><line
+x1="40"
+y1="176"
+x2="40"
+y2="80"
+fill="none"
+:stroke="displayColor"
+stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="16"/></g>
     </svg>
 </template>
 
@@ -25,8 +102,8 @@ import { IconComputed, IconProps, IconContext } from '@/lib/types'
 
 export default Vue.extend<{}, {}, IconComputed, IconProps>({
     name: `PhArrowFatLineRight`,
-    props: PropValidator,
     inject: ContextGetter,
+    props: PropValidator,
     computed: {
         displayWeight() {
             const { weight, contextWeight } = this as IconProps & IconContext
