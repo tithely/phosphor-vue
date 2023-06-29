@@ -89,7 +89,9 @@ export default Vue.extend<{}, {}, IconComputed, IconProps>({
         },
         displayMirrored() {
             const { mirrored, contextMirrored } = this as IconProps & IconContext
-            return mirrored ?? contextMirrored ? `scale(-1, 1)` : `none`
+            return mirrored !== undefined
+                ? (mirrored ? `scale(-1, 1)` : undefined)
+                : (contextMirrored ? `scale(-1, 1)` : undefined)
         }
     }
 })
