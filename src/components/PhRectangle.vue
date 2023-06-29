@@ -8,74 +8,13 @@
         :transform="displayMirrored"
         v-bind="$attrs"
         v-on="$listeners">
-        <slot/>
-            <g v-if="displayWeight === 'bold'"><rect
-x="32"
-y="48"
-width="192"
-height="160"
-rx="8"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="24"/></g>
-            <g v-else-if="displayWeight === 'duotone'"><rect
-x="32"
-y="48"
-width="192"
-height="160"
-rx="8"
-opacity="0.2"/><rect
-x="32"
-y="48"
-width="192"
-height="160"
-rx="8"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="16"/></g>
-            <g v-else-if="displayWeight === 'fill'"><rect
-x="24"
-y="40"
-width="208"
-height="176"
-rx="16"/></g>
-            <g v-else-if="displayWeight === 'light'"><rect
-x="32"
-y="48"
-width="192"
-height="160"
-rx="8"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="12"/></g>
-            <g v-else-if="displayWeight === 'thin'"><rect
-x="32"
-y="48"
-width="192"
-height="160"
-rx="8"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="8"/></g>
-            <g v-else-if="displayWeight === 'regular'"><rect
-x="32"
-y="48"
-width="192"
-height="160"
-rx="8"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="16"/></g>
+        <slot />
+            <g v-if="displayWeight === 'bold'"><rect x="32" y="48" width="192" height="160" rx="8" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></g>
+            <g v-else-if="displayWeight === 'duotone'"><rect x="32" y="48" width="192" height="160" rx="8" opacity="0.2"/><rect x="32" y="48" width="192" height="160" rx="8" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></g>
+            <g v-else-if="displayWeight === 'fill'"><rect x="24" y="40" width="208" height="176" rx="16"/></g>
+            <g v-else-if="displayWeight === 'light'"><rect x="32" y="48" width="192" height="160" rx="8" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/></g>
+            <g v-else-if="displayWeight === 'thin'"><rect x="32" y="48" width="192" height="160" rx="8" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/></g>
+            <g v-else-if="displayWeight === 'regular'"><rect x="32" y="48" width="192" height="160" rx="8" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></g>
     </svg>
 </template>
 
@@ -86,8 +25,8 @@ import { IconComputed, IconProps, IconContext } from '@/lib/types'
 
 export default Vue.extend<{}, {}, IconComputed, IconProps>({
     name: `PhRectangle`,
-    inject: ContextGetter,
     props: PropValidator,
+    inject: ContextGetter,
     computed: {
         displayWeight() {
             const { weight, contextWeight } = this as IconProps & IconContext
@@ -103,7 +42,9 @@ export default Vue.extend<{}, {}, IconComputed, IconProps>({
         },
         displayMirrored() {
             const { mirrored, contextMirrored } = this as IconProps & IconContext
-            return mirrored ?? contextMirrored ? `scale(-1, 1)` : `none`
+            return mirrored !== undefined
+                ? (mirrored ? `scale(-1, 1)` : undefined)
+                : (contextMirrored ? `scale(-1, 1)` : undefined)
         }
     }
 })

@@ -8,88 +8,13 @@
         :transform="displayMirrored"
         v-bind="$attrs"
         v-on="$listeners">
-        <slot/>
-            <g v-if="displayWeight === 'bold'"><line
-x1="216"
-y1="128"
-x2="40"
-y2="128"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="24"/><polyline
-points="112 56 40 128 112 200"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="24"/></g>
-            <g v-else-if="displayWeight === 'duotone'"><line
-x1="216"
-y1="128"
-x2="40"
-y2="128"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="16"/><polyline
-points="112 56 40 128 112 200"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="16"/></g>
+        <slot />
+            <g v-if="displayWeight === 'bold'"><line x1="216" y1="128" x2="40" y2="128" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><polyline points="112 56 40 128 112 200" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></g>
+            <g v-else-if="displayWeight === 'duotone'"><line x1="216" y1="128" x2="40" y2="128" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polyline points="112 56 40 128 112 200" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></g>
             <g v-else-if="displayWeight === 'fill'"><path d="M224,128a8,8,0,0,1-8,8H120v64a8,8,0,0,1-4.9,7.4,8.5,8.5,0,0,1-3.1.6,8.3,8.3,0,0,1-5.7-2.3l-72-72a8.1,8.1,0,0,1,0-11.4l72-72a8.4,8.4,0,0,1,8.8-1.7A8,8,0,0,1,120,56v64h96A8,8,0,0,1,224,128Z"/></g>
-            <g v-else-if="displayWeight === 'light'"><line
-x1="216"
-y1="128"
-x2="40"
-y2="128"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="12"/><polyline
-points="112 56 40 128 112 200"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="12"/></g>
-            <g v-else-if="displayWeight === 'thin'"><line
-x1="216"
-y1="128"
-x2="40"
-y2="128"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="8"/><polyline
-points="112 56 40 128 112 200"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="8"/></g>
-            <g v-else-if="displayWeight === 'regular'"><line
-x1="216"
-y1="128"
-x2="40"
-y2="128"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="16"/><polyline
-points="112 56 40 128 112 200"
-fill="none"
-:stroke="displayColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="16"/></g>
+            <g v-else-if="displayWeight === 'light'"><line x1="216" y1="128" x2="40" y2="128" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/><polyline points="112 56 40 128 112 200" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/></g>
+            <g v-else-if="displayWeight === 'thin'"><line x1="216" y1="128" x2="40" y2="128" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/><polyline points="112 56 40 128 112 200" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/></g>
+            <g v-else-if="displayWeight === 'regular'"><line x1="216" y1="128" x2="40" y2="128" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polyline points="112 56 40 128 112 200" fill="none" :stroke="displayColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></g>
     </svg>
 </template>
 
@@ -100,8 +25,8 @@ import { IconComputed, IconProps, IconContext } from '@/lib/types'
 
 export default Vue.extend<{}, {}, IconComputed, IconProps>({
     name: `PhArrowLeft`,
-    inject: ContextGetter,
     props: PropValidator,
+    inject: ContextGetter,
     computed: {
         displayWeight() {
             const { weight, contextWeight } = this as IconProps & IconContext
@@ -117,7 +42,9 @@ export default Vue.extend<{}, {}, IconComputed, IconProps>({
         },
         displayMirrored() {
             const { mirrored, contextMirrored } = this as IconProps & IconContext
-            return mirrored ?? contextMirrored ? `scale(-1, 1)` : `none`
+            return mirrored !== undefined
+                ? (mirrored ? `scale(-1, 1)` : undefined)
+                : (contextMirrored ? `scale(-1, 1)` : undefined)
         }
     }
 })
