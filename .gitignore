@@ -4,6 +4,13 @@ node_modules/
 # Distribution
 dist/
 
+# Yarn 4
+.yarn/install-state.gz
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/cache/
+.pnp.*
+
 # IDE Folders
 .idea/
 .vscode/
