@@ -3,8 +3,10 @@
     "target": "es2018",
     "moduleResolution": "node",
     "baseUrl": ".",
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true,
     "types": [
-      "node",
       "vue"
     ],
     "paths": {
@@ -17,6 +19,10 @@
       "dom"
     ]
   },
+  "include": [
+    "src/**/*",
+    "src/vue-shims.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "dist"
